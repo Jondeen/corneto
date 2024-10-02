@@ -41,7 +41,19 @@ P.solve(solver="SCIPY")
 
 > :warning: Please note that without any backend, you can't do much with CORNETO. There are two supported backends right now: [PICOS](https://picos-api.gitlab.io/picos/tutorial.html) and [CVXPY](https://www.cvxpy.org/). Both backends allow symbolic manipulation of expressions in matrix notation. 
 
+## How to cite
 
+The manuscript for this work is in preparation. In the meantime, if you are currently using CORNETO, please cite the repository:
+
+```
+@misc{rodriguezmier_corneto24,
+  author       = {Rodriguez-Mier, Pablo and Garrido-Rodriguez, Martin and Gabor, Attila and Saez-Rodriguez, Julio},
+  title        = {Unified knowledge-driven network inference from omics data},
+  year         = {2024},
+  howpublished = {\url{https://github.com/saezlab/corneto}},
+  note         = {Manuscript in preparation}
+}
+```
 
 ## Acknowledgements
 
