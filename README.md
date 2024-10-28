@@ -18,7 +18,7 @@ CORNETO (Constrained Optimization for the Recovery of Networks from Omics) is a 
 > **⚠️ Disclaimer**: This is an early preview of the CORNETO library. **CORNETO is under active development and has not yet reached a stable release for end users**. Contributions and feedback are not yet open until the first stable release. Please stay tuned for updates.
 
 <div align="center"> 
-<img alt="corneto logo" src="https://raw.githubusercontent.com/saezlab/corneto/refs/heads/main/docs/_static/corneto-fig-abstract.jpg" height="600"/>
+<img alt="corneto logo" src="https://raw.githubusercontent.com/saezlab/corneto/refs/heads/main/docs/_static/corneto-fig-abstract.png" height="600"/>
 </div>
 
 
