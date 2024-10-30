@@ -3,19 +3,25 @@
 <br>
 <h3>CORNETO: Unified knowledge-driven network inference from omics data.</h3>
 
-Maintained by [Saez-Rodriguez](https://saezlab.org) group.
+
+<h4>
+
+[Preprint](https://doi.org/10.1101/2024.10.26.620390) | [Documentation (WIP)](https://saezlab.github.io/corneto) | [Notebooks (WIP)](https://github.com/saezlab/corneto/tree/main/docs/tutorials)
+
+</h4>
 
 <!-- badges: start -->
+[![GitHub stars](https://img.shields.io/github/stars/saezlab/corneto)](https://github.com/saezlab/corneto/stargazers)
 [![main](https://github.com/saezlab/corneto/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/saezlab/corneto/actions)
 <!-- badges: end -->
 
 </div>
 
+> **⚠️ Disclaimer**: This is an early preview of the CORNETO library. **CORNETO is under active development and has not yet reached a stable release for end users**. Contributions and feedback are not yet open until the first stable release. Please stay tuned for updates.
+
 ---
 
 CORNETO (Constrained Optimization for the Recovery of Networks from Omics) is a unified framework for multi-sample joint network inference, implemented in Python. It tackles common network inference problems in biology and extends them to support multiple samples or conditions simultaneously, enhancing network identification. The framework reformulates these problems using constrained optimization and mathematical programming, allowing them to be optimally solved with mathematical solvers. Additionally, it provides flexible modeling capabilities, enabling the exploration of hypotheses, modification, or development of new network inference problems through the use of modular constrained building blocks.
-
-> **⚠️ Disclaimer**: This is an early preview of the CORNETO library. **CORNETO is under active development and has not yet reached a stable release for end users**. Contributions and feedback are not yet open until the first stable release. Please stay tuned for updates.
 
 <div align="center"> 
 <img alt="corneto logo" src="https://raw.githubusercontent.com/saezlab/corneto/refs/heads/main/docs/_static/corneto-fig-abstract.png" height="600"/>
@@ -47,25 +53,27 @@ P.solve(solver="SCIPY")
 
 ## How to cite
 
-The manuscript for this work is in preparation. In the meantime, if you are currently using CORNETO, please cite the repository:
-
 ```
-@misc{rodriguezmier_corneto24,
-  author       = {Rodriguez-Mier, Pablo and Garrido-Rodriguez, Martin and Gabor, Attila and Saez-Rodriguez, Julio},
-  title        = {Unified knowledge-driven network inference from omics data},
-  year         = {2024},
-  howpublished = {\url{https://github.com/saezlab/corneto}},
-  note         = {Manuscript in preparation}
+@article {Rodriguez-Mier2024,
+	author = {Rodriguez-Mier, Pablo and Garrido-Rodriguez, Martin and Gabor, Attila and Saez-Rodriguez, Julio},
+	title = {Unified knowledge-driven network inference from omics data},
+	elocation-id = {2024.10.26.620390},
+	year = {2024},
+	doi = {10.1101/2024.10.26.620390},
+	publisher = {Cold Spring Harbor Laboratory},
+	URL = {https://www.biorxiv.org/content/early/2024/10/29/2024.10.26.620390},
+	eprint = {https://www.biorxiv.org/content/early/2024/10/29/2024.10.26.620390.full.pdf},
+	journal = {bioRxiv}
 }
 ```
 
 ## Acknowledgements
 
-CORNETO is developed at the [Institute for Computational Biomedicine](https://saezlab.org) (Heidelberg University). The development of this project is supported by European Union's Horizon 2020 Programme under
-PerMedCoE project ([permedcoe.eu](https://permedcoe.eu/)) agreement no. 951773.
+CORNETO is developed at the [Institute for Computational Biomedicine](https://saezlab.org) (Heidelberg University). We acknowledge funding from the European Unions Horizon 2020 Programme under the grant agreement No 951773 (PerMedCoE https://permedcoe.eu/) and under grant agreement No 965193 (DECIDER https://www.deciderproject.eu/)
 
 <div align="left">
   <img src="https://raw.githubusercontent.com/saezlab/.github/main/profile/logos/saezlab.png" alt="Saez lab logo" height="64px" style="margin: 0 20px;">
-  <img src="https://lcsb-biocore.github.io/COBREXA.jl/stable/assets/permedcoe.svg" alt="PerMedCoE logo" height="64px" style="margin: 0 20px;">
   <img src="https://yt3.googleusercontent.com/ytc/AIf8zZSHTQJs12aUZjHsVBpfFiRyrK6rbPwb-7VIxZQk=s176-c-k-c0x00ffffff-no-rj" alt="UKHD logo" height="64px" style="margin: 0 20px;">
+  <img src="https://lcsb-biocore.github.io/COBREXA.jl/stable/assets/permedcoe.svg" alt="PerMedCoE logo" height="64px" style="margin: 0 20px;">
+  <img src="https://raw.githubusercontent.com/saezlab/corneto/refs/heads/main/docs/_static/decider-eu-logo.png" alt="UKHD logo" height="64px" style="margin: 0 20px;">
 </div>
