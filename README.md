@@ -31,11 +31,7 @@ CORNETO (Constrained Optimization for the Recovery of Networks from Omics) is a 
 
 ## Installation
 
-The library will be uploaded to pypi once the API is stable. Meanwhile, it can be installed by downloading the wheel file from the repository. It's recommended to use also conda to create a new environment, although it's not mandatory.
-
-### Recommended setup
-
-CORNETO does not include any backend nor solver by default to avoid issues with architectures for which some of the required binaries are not available. The recommended setup for CORNETO requires CVXPY and Gurobi:
+A pre-release version of the lib, which is used by LIANA+ and NetworkCommons, is already available at Pypi and can be installed with `pip install corneto`. However, this version lacks many of the developments discussed in the preprint. You can install it along with CVXPY, Scipy (for open source solver support) and Gurobipy for using GUROBI solver:
 
 ```bash
 pip install corneto cvxpy-base scipy gurobipy
@@ -50,7 +46,22 @@ Alternatively, it is possible to use CORNETO with any free solver, such as HIGHS
 P.solve(solver="SCIPY")
 ```
 
-> :warning: Please note that without any backend, you can't do much with CORNETO. There are two supported backends right now: [PICOS](https://picos-api.gitlab.io/picos/tutorial.html) and [CVXPY](https://www.cvxpy.org/). Both backends allow symbolic manipulation of expressions in matrix notation. 
+### Development version
+
+To install the development version with support for ploting using graphviz, please use conda or mamba to create an environment:
+
+```
+conda activate your-environment
+conda install -c conda-forge python-graphviz
+pip install cvxpy-base gurobipy
+```
+
+Then, install the dev version of CORNETO:
+```
+git clone -b dev https://github.com/saezlab/corneto.git
+cd corneto
+pip install -e .
+```
 
 ## How to cite
 
