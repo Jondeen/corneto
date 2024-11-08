@@ -17,7 +17,7 @@
 
 </div>
 
-> **⚠️ Disclaimer**: This is an early preview of the CORNETO library. **CORNETO is under active development and has not yet reached a stable release for end users**. Contributions and feedback are not yet open until the first stable release. Please stay tuned for updates.
+> **⚠️ Disclaimer**: This is an early preview of the CORNETO library. **CORNETO is under active development and has not yet reached a stable release for end users**. Contributions are not yet open until the first stable release. Please stay tuned for updates.
 
 ---
 
@@ -27,32 +27,17 @@ CORNETO (Constrained Optimization for the Recovery of Networks from Omics) is a 
   <img alt="CORNETO abstract" src="docs/_static/corneto-fig-abstract-v3.jpg" width="720" style="max-width: 100%; height: auto;">
 </p>
 
-
-
 ## Installation
 
-A pre-release version of the lib, which is used by LIANA+ and NetworkCommons, is already available at Pypi and can be installed with `pip install corneto`. However, this version lacks many of the developments discussed in the preprint. You can install it along with CVXPY, Scipy (for open source solver support) and Gurobipy for using GUROBI solver:
-
-```bash
-pip install corneto cvxpy-base scipy gurobipy
-```
-
-Please note that **GUROBI is a commercial solver which offers free academic licenses**. If you have an academic email, this step is very easy to do in just few minutes: https://www.gurobi.com/features/academic-named-user-license/. You need to register GUROBI in your machine with the `grbgetkey` tool from GUROBI.
-
-Alternatively, it is possible to use CORNETO with any free solver, such as HIGHS, included in Scipy. For this you don't need to install Gurobi. Please note that if `gurobipy` is installed but not registered with a valid license, CORNETO will choose it but the solver will fail due to license issues. If SCIPY is installed, when optimizing a problem, select SCIPY as the solver
-
-```python
-# P is a corneto problem
-P.solve(solver="SCIPY")
-```
+We're currently working towards having a first, stable release for end-users with all the features described in the preprint. In the meantime, you can play with CORNETO using the latest dev. version.
 
 ### Development version
 
-To install the development version with support for ploting using graphviz, please use conda or mamba to create an environment:
+To install the development version with support for the Gurobi solver and plotting capabilities using graphviz, please use conda or mamba to create an environment:
 
 ```
 conda activate your-environment
-conda install -c conda-forge python-graphviz
+conda install -c conda-forge python-graphviz scipy
 pip install cvxpy-base gurobipy
 ```
 
@@ -62,6 +47,38 @@ git clone -b dev https://github.com/saezlab/corneto.git
 cd corneto
 pip install -e .
 ```
+
+### Installing Gurobi solver
+
+CORNETO supports many different mathematical solvers for optimization. However, for real world problems, we typically use GUROBI.  **GUROBI is a commercial solver which offers free academic licenses**. If you have an academic email, this step is very easy to do in just few minutes. Follow these steps:
+
+1. Request the "Academic Named-User License" here: https://www.gurobi.com/features/academic-named-user-license/.
+2. Register the license in your machine with the `grbgetkey` tool from GUROBI. For this, download the corresponding license tool for your system here: https://support.gurobi.com/hc/en-us/articles/360059842732-How-do-I-set-up-a-license-without-installing-the-full-Gurobi-package
+3. Run the `grbgetkey` tool and introduce your license key.
+
+If you find any issue, please check this article: https://support.gurobi.com/hc/en-us/articles/13207658935185-How-do-I-retrieve-an-Academic-Named-User-license   
+
+Please note that other high performance solvers like CPLEX, COPT, Mosek, etc are also supported. Please check the solver's table from https://www.cvxpy.org/tutorial/solvers/index.html to see which solvers are supported by the CVXPY backend. 
+
+### Installing open-source solvers
+
+Alternatively, it is possible to use CORNETO with any free solver, such as HIGHS, included in Scipy. For this you don't need to install Gurobi. Please note that if `gurobipy` is installed but not registered with a valid license, CORNETO will choose it but the solver will fail due to license issues. If SCIPY is installed, when optimizing a problem, select SCIPY as the solver
+
+```python
+# P is a corneto problem
+P.solve(solver="SCIPY")
+```
+
+### Pre-release version
+
+A pre-release version of the lib, which is used by [LIANA+](https://liana-py.readthedocs.io/) and [NetworkCommons](https://networkcommons.readthedocs.io/), is already available at Pypi and can be installed with `pip install corneto`. However, this version lacks many of the developments discussed in the preprint. 
+
+You can install it along with CVXPY, Scipy (for open source solver support) and Gurobipy for using GUROBI solver:
+
+```bash
+pip install corneto cvxpy-base scipy gurobipy
+```
+
 
 ## How to cite
 
