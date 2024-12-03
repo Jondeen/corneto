@@ -90,6 +90,26 @@ def calculate_division(numerator: float, denominator: float) -> float:
     return numerator / denominator
 ```
 
+### Building docs
+
+Once the project is installed with poetry, you can build and serve the docs by going to `docs` folder and running:
+
+```
+poetry run build_docs_and_serve.py
+```
+
+This will run `sphinx-build` on the current dir, generate a `_build\html` folder and serve the content with http.serve. To manually run sphinx (to see e.g. the logs), you can use:
+
+```
+poetry run sphinx-build . _build
+```
+
+The project also uses sphinx multiversion to generate the docs for versions in different branches. You can run this with:
+
+```
+poetry run sphinx-multiversion . _build
+```
+
 ## Testing
 
 We use `pytest` for running our automated tests. To run tests, use Poetry to execute the tests by running:
