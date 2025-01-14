@@ -79,6 +79,9 @@ You can install it along with CVXPY, Scipy (for open source solver support) and 
 pip install corneto cvxpy-base scipy gurobipy
 ```
 
+## Experiments
+
+Notebooks with the experiments presented in the manuscript are available here: https://github.com/saezlab/corneto-manuscript-experiments
 
 ## How to cite
 
