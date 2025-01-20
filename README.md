@@ -52,13 +52,13 @@ pip install -e .
 
 CORNETO supports many different mathematical solvers for optimization. However, for real world problems, we typically use GUROBI.  **GUROBI is a commercial solver which offers free academic licenses**. If you have an academic email, this step is very easy to do in just few minutes. Follow these steps:
 
-1. Request the "Academic Named-User License" here: https://www.gurobi.com/features/academic-named-user-license/.
-2. Register the license in your machine with the `grbgetkey` tool from GUROBI. For this, download the corresponding license tool for your system here: https://support.gurobi.com/hc/en-us/articles/360059842732-How-do-I-set-up-a-license-without-installing-the-full-Gurobi-package
+1. Request the ["Academic Named-User License"](https://www.gurobi.com/features/academic-named-user-license/).
+2. Register the license in your machine with the `grbgetkey` tool from GUROBI. For this, download the corresponding [license tool for your system](https://support.gurobi.com/hc/en-us/articles/360059842732-How-do-I-set-up-a-license-without-installing-the-full-Gurobi-package)
 3. Run the `grbgetkey` tool and introduce your license key.
 
-If you find any issue, please check this article: https://support.gurobi.com/hc/en-us/articles/13207658935185-How-do-I-retrieve-an-Academic-Named-User-license   
+If you find any issue, please check [this article](https://support.gurobi.com/hc/en-us/articles/13207658935185-How-do-I-retrieve-an-Academic-Named-User-license)
 
-Please note that other high performance solvers like CPLEX, COPT, Mosek, etc are also supported. Please check the solver's table from https://www.cvxpy.org/tutorial/solvers/index.html to see which solvers are supported by the CVXPY backend. 
+Please note that other high performance solvers like CPLEX, COPT, Mosek, etc are also supported. Please check the [solver's table](https://www.cvxpy.org/tutorial/solvers/index.html) to see which solvers are supported by the CVXPY backend. 
 
 ### Installing open-source solvers
 
