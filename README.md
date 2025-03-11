@@ -6,7 +6,7 @@
 
 <h4>
 
-[Preprint](https://doi.org/10.1101/2024.10.26.620390) | [Documentation (WIP)](https://saezlab.github.io/corneto) | [Notebooks (WIP)](https://github.com/saezlab/corneto/tree/main/docs/tutorials)
+[Preprint](https://doi.org/10.1101/2024.10.26.620390) | [Documentation](https://saezlab.github.io/corneto/dev) | [Notebooks](https://saezlab.github.io/corneto/dev/tutorials/index.html)
 
 </h4>
 
@@ -17,7 +17,6 @@
 
 </div>
 
-> **⚠️ Disclaimer**: This is an early preview of the CORNETO library. **CORNETO is under active development and has not yet reached a stable release for end users**. Contributions are not yet open until the first stable release. Please stay tuned for updates.
 
 ---
 
