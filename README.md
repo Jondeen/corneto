@@ -28,7 +28,17 @@ CORNETO (Constrained Optimization for the Recovery of Networks from Omics) is a 
 
 ## Installation
 
-We're currently working towards having a first, stable release for end-users with all the features described in the preprint. In the meantime, you can play with CORNETO using the latest dev. version.
+### Stable version
+
+A stable version of the lib, which is used by [LIANA+](https://liana-py.readthedocs.io/) and [NetworkCommons](https://networkcommons.readthedocs.io/), is already available at Pypi and can be installed with `pip install corneto`. 
+
+Plase note that this version lacks many of the developments discussed in the manuscript. To use the latest features, please install the development version. 
+
+You can install it along with CVXPY, Scipy (for open source solver support) and Gurobipy for using GUROBI solver:
+
+```bash
+pip install corneto cvxpy-base scipy gurobipy
+```
 
 ### Development version
 
@@ -66,16 +76,6 @@ Alternatively, it is possible to use CORNETO with any free solver, such as HIGHS
 ```python
 # P is a corneto problem
 P.solve(solver="SCIPY")
-```
-
-### Pre-release version
-
-A pre-release version of the lib, which is used by [LIANA+](https://liana-py.readthedocs.io/) and [NetworkCommons](https://networkcommons.readthedocs.io/), is already available at Pypi and can be installed with `pip install corneto`. However, this version lacks many of the developments discussed in the preprint. 
-
-You can install it along with CVXPY, Scipy (for open source solver support) and Gurobipy for using GUROBI solver:
-
-```bash
-pip install corneto cvxpy-base scipy gurobipy
 ```
 
 ## Experiments
