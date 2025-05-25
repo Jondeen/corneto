@@ -5,6 +5,8 @@ from corneto._graph import Graph
 from corneto._settings import LOGGER
 from corneto.methods.signaling import create_flow_graph, signflow
 
+import numpy as np
+
 
 def _info(s, show=True):
     if show:
