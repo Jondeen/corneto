@@ -489,36 +489,111 @@ def bfs_search(
     return selected_edges, paths, stats
 
 def export_results(P, G, input_dict, output_dict):
+    # Compute node and edge values
     nodes = P.symbols['species_activated_c0'].value - P.symbols['species_inhibited_c0'].value
-    edges = P.symbols['reaction_sends_activation_c0'].value - P.symbols['reaction_sends_inhibition_c0'].value
+    edge_vals = P.symbols['reaction_sends_activation_c0'].value - P.symbols['reaction_sends_inhibition_c0'].value
 
-    E = G.edges
+    # Build vertex index lookup
     V = {v: i for i, v in enumerate(G.vertices)}
 
     df_rows = []
-    for i, (s_set, t_set) in enumerate(E):
-        if abs(edges[i]) < 0.5:
-            continue  # Skip low-weight edges
+    for i, (s_set, t_set) in G.edges():
+        if abs(edge_vals[i]) <= 0.5:
+            continue
+
+        edge_type = G.get_attr_edge(i).get("interaction", 0)
 
         for s in s_set:
             for t in t_set:
-                edge_type = G.edge_properties[i].get('interaction', 0)
                 s_val = nodes[V[s]] if s in V else 0
                 t_val = nodes[V[t]] if t in V else 0
+
                 s_type = 'input' if s in input_dict else 'unmeasured'
-                t_type = 'output' if t in output_dict else 'unmeasured'
                 s_weight = input_dict.get(s, 0)
+                t_type = 'output' if t in output_dict else 'unmeasured'
                 t_weight = output_dict.get(t, 0)
 
                 df_rows.append([
                     s, s_type, s_weight, s_val,
                     t, t_type, t_weight, t_val,
-                    edge_type, edges[i]
+                    edge_type, edge_vals[i]
                 ])
 
-    columns = ['source', 'source_type', 'source_weight', 'source_pred_val',
-               'target', 'target_type', 'target_weight', 'target_pred_val',
-               'edge_type', 'edge_pred_val']
+    columns = [
+        'source', 'source_type', 'source_weight', 'source_pred_val',
+        'target', 'target_type', 'target_weight', 'target_pred_val',
+        'edge_type', 'edge_pred_val'
+    ]
 
     return df_rows, columns
 
+def _check_graphviz():
+    try:
+        import graphviz
+    except Exception as e:
+        return ImportError("Graphviz not installed, but required for plotting. Please install it using conda: 'conda install python-graphviz.'", str(e))
+    return graphviz
+
+def visualize_network(df, clean=True, node_attr=None):
+    graphviz = _check_graphviz()
+    if node_attr is None:
+        node_attr = dict(fixedsize="true")
+    g = graphviz.Digraph(node_attr=node_attr)
+
+    for i, row in df.iterrows():
+        source = str(row.source)
+        target = str(row.target)
+
+        if clean:
+            if not source or source.startswith('_'):
+                continue
+            if not target or target.startswith('_'):
+                continue
+            if row.source_type != 'input_ligand' and (
+                row.source_pred_val == 0 or row.target_pred_val == 0
+            ):
+                continue
+
+        edge_props = dict(arrowhead='normal')
+        edge_type = int(row.edge_type)
+        edge_val = int(row.edge_pred_val)
+
+        if edge_type != 0:
+            edge_props['penwidth'] = '2'
+        if edge_type < 0:
+            edge_props['arrowhead'] = 'tee'
+        if edge_val < 0:
+            edge_props['color'] = 'blue'
+        elif edge_val > 0:
+            edge_props['color'] = 'red'
+
+        g.node(source, **_get_node_props('source', row))
+        g.node(target, **_get_node_props('target', row))
+        g.edge(source, target, **edge_props)
+
+    return g
+
+def _get_node_props(prefix, row):
+    props = dict(shape='circle')
+    name = prefix
+    pred_val = prefix + '_pred_val'
+    node_type = prefix + '_type'
+
+    if len(row[name]) == 0:
+        props['shape'] = 'point'
+    if row[pred_val] != 0:
+        props['penwidth'] = '2'
+        props['style'] = 'filled'
+    if row[pred_val] > 0:
+        props['color'] = 'red'
+        props['fillcolor'] = 'lightcoral'
+    if row[pred_val] < 0:
+        props['color'] = 'blue'
+        props['fillcolor'] = 'azure2'
+    if row[node_type] == 'input':
+        props['shape'] = 'invtriangle'
+    if row[node_type] == 'input_ligand':
+        props['shape'] = 'plaintext'
+    if row[node_type] == 'output':
+        props['shape'] = 'square'
+    return props
