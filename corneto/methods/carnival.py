@@ -144,6 +144,32 @@ def runInverseCarnival(
     )
 
 
+def _extended_carnival_problem(G,
+                            input_node_scores,
+                            output_node_scores,
+                            node_penalties=None,
+                            edge_penalty=1e-2):
+    data = dict()
+    V = set(G.vertices)
+    for k, v in input_node_scores.items():
+        if k in V:
+            data[k] = ("P", v)
+    for k, v in output_node_scores.items():
+        if k in V:
+            data[k] = ("M", v)
+    conditions = {"c0": data}
+    Gf = create_flow_graph(G, conditions)
+    Pc = signflow(Gf, conditions,
+                  l0_penalty_edges=edge_penalty,
+                  flow_implies_signal=False)
+   
+    if node_penalties is not None:
+        selected_nodes = Pc.symbols['species_inhibited_c0'] + Pc.symbols['species_activated_c0']
+        node_penalty = np.array([node_penalties.get(n, 0.0) for n in Gf.vertices])
+        Pc.add_objectives(node_penalty @ selected_nodes)
+    
+    return Pc, Gf
+
 def heuristic_carnival(
     priorKnowledgeNetwork: Union[List[Tuple], Graph],
     perturbations: Dict,
