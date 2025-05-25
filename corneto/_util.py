@@ -145,7 +145,7 @@ def info():
         import base64
         from importlib.resources import files
 
-        from IPython.core.display import display
+        from IPython.display import display
         from IPython.display import HTML
 
         # logo_path = pkg_resources.resource_filename(__name__, "resources/logo.png")
