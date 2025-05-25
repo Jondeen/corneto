@@ -487,3 +487,49 @@ def bfs_search(
         print(f" > Detected loops: {stats['loops']}")
         print(f" > Conflicts: {stats['conflicts']}")
     return selected_edges, paths, stats
+
+def export_results(P, G, input_dict, output_dict):
+    # Get results
+    nodes = P.symbols['species_activated_c0'].value - P.symbols['species_inhibited_c0'].value
+    edges = P.symbols['reaction_sends_activation_c0'].value - P.symbols['reaction_sends_inhibition_c0'].value
+
+    # For all edges
+    E = G.edges
+    V = {v: i for i, v in enumerate(G.vertices)}
+
+    df_rows = []
+    for i, e in enumerate(E):
+        s, t = e
+        if len(s) > 0:
+            s = list(s)[0]
+        else:
+            s = ''
+        if len(t) > 0:
+            t = list(t)[0]
+        else:
+            t = ''
+        if abs(edges[i]) > 0.5:
+            # Get value of source/target
+            edge_type = G.edge_properties[i].get('interaction', 0)
+            s_val = nodes[V[s]] if s in V else 0
+            t_val = nodes[V[t]] if t in V else 0
+            s_type = 'unmeasured'
+            s_weight = 0
+            t_type = 'unmeasured'
+            t_weight = 0
+            if s in input_dict:
+                s_type = 'input'
+                s_weight = input_dict.get(s)
+            if t in output_dict:
+                t_type = 'output'
+                t_weight = output_dict.get(t)
+
+            df_rows.append([s, s_type, s_weight, s_val, t, t_type, t_weight, t_val, edge_type, edges[i]])
+    
+    columns = ['source', 'source_type',
+               'source_weight', 'source_pred_val',
+               'target', 'target_type',
+               'target_weight', 'target_pred_val',
+               'edge_type', 'edge_pred_val']
+    
+    return df_rows, columns
